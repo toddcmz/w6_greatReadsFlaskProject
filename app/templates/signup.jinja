@@ -21,6 +21,10 @@
             {{ form.last_name(size=32)}}
         </p>
         <p>
+            {{ form.fav_book.label}}<br>
+            {{ form.fav_book(size=32)}}
+        </p>
+        <p>
             {{ form.email.label}}<br>
             {{ form.email(size=32)}}
             {% for error in form.email.errors %} 
