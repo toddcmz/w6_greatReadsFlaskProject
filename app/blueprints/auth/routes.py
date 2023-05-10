@@ -14,10 +14,12 @@ def signup():
     if form.validate_on_submit():
             username = form.username.data
             email = form.email.data
+            first_name = form.first_name.data
+            last_name = form.last_name.data
             checkUser = User.query.filter_by(username=username).first()
             checkEmail = User.query.filter_by(email=email).first()
             if not checkUser and not checkEmail:
-                thisUser = User(username=username, email=email, password=form.password.data)
+                thisUser = User(username=username, first_name=first_name, last_name=last_name, email=email, password=form.password.data)
                 thisUser.commit()
                 flash(f"Username '{username}' submitted a sign up request")
                 return redirect(url_for('main.home'))
