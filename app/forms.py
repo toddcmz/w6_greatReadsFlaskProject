@@ -10,3 +10,14 @@ class SignupForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()])
     password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
+
+class SigninForm(FlaskForm):
+    username = StringField('username', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+    submit = SubmitField('Sign In')
+
+class BookReviewForm(FlaskForm):
+    title = StringField('title', validators=[DataRequired()])
+    author = StringField('author', validators=[DataRequired()])
+    review = StringField('review', validators=[DataRequired()])
+    submit = SubmitField('Submit Review')

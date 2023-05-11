@@ -2,6 +2,33 @@
 
 {% block content %}
 
-    <h4>Placeholder</h4>
+    <h3>Review a Book</h3>
+    <form action="", method ="post">    
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label}}<br>
+            {{ form.title(size=50)}}
+            {% for error in form.title.errors %} 
+                <span class="err-msg">{{ error }}</span>
+            {% endfor %}
+        </p>
+                <p>
+            {{ form.author.label}}<br>
+            {{ form.author(size=50)}}
+            {% for error in form.author.errors %} 
+                <span class="err-msg">{{ error }}</span>
+            {% endfor %}
+        </p>
+                <p>
+            {{ form.review.label}}<br>
+            {{ form.review(size=100)}}
+            {% for error in form.review.errors %} 
+                <span class="err-msg">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
 
 {% endblock %}
