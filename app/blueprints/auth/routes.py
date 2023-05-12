@@ -3,10 +3,12 @@ from . import bp
 from app.forms import SignupForm, SigninForm
 from app.models import User
 from app import db
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required, current_user
 
 @bp.route('/signin', methods=['GET', 'POST'])
 def signin():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
     form = SigninForm()
     if form.validate_on_submit():
         thisUser = User.query.filter_by(username=form.username.data).first()
@@ -20,6 +22,8 @@ def signin():
 
 @bp.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
     form = SignupForm()
     if form.validate_on_submit():
             username = form.username.data
@@ -40,3 +44,9 @@ def signup():
             else:
                 flash(f'{email} already taken, try again', 'warning')
     return render_template('signup.jinja', title='Sign Up', form=form)
+
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.home'))

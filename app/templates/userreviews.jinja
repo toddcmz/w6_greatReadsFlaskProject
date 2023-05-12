@@ -1,0 +1,18 @@
+{% extends "baseTemplate.jinja" %}
+
+{% block content %}
+    
+    <h5>{{reader.username}}'s Review History</h5>
+    <br>
+    {% set count = namespace(value=0) %}
+    {% for thisReview in reader.book_list %}
+        {% set count.value = count.value + 1 %}
+        <h6 style="color:navy;">--- Review Number {{ count.value }} ---</h5>
+        <p>{{ thisReview.title }}</p>
+        <p>{{ thisReview.author }}</p>
+        <p>{{ thisReview.review }}</p>
+        <br>
+        
+    {% endfor %}
+    
+{% endblock %}
